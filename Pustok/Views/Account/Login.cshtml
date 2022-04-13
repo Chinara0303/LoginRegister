@@ -1,0 +1,32 @@
+﻿@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12 mx-auto">
+    <form method="post">
+        <div class="login-form">
+            <h4 class="login-title">Returning Customer</h4>
+            <p><span class="font-weight-bold">I am a returning customer</span></p>
+            <div class="row">
+                <div class="col-md-12 col-12 mb--15">
+                    <label asp-for="Email"></label>
+                    <input class="mb-0 form-control" asp-for="Email" placeholder="Enter you email address here...">
+                </div>
+                <div class="col-12 mb--20">
+                    <label asp-for="PassWord"></label>
+                    <input class="mb-0 form-control" asp-for="PassWord" placeholder="Enter your password">
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </div>
+        </div>
+    </form>
+</div>
+@section Script{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}
+

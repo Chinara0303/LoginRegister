@@ -1,0 +1,59 @@
+﻿@model RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+
+<main class="page-section inner-page-sec-padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0 mx-auto">
+                <!-- Login Form s-->
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form method="post">
+                    <div class="login-form">
+                        <h4 class="login-title">New Customer</h4>
+                        <p><span class="font-weight-bold">I am a new user</span></p>
+                        <div class="row">
+                            <div class="col-md-12 col-12 mb--15">
+                                <label asp-for="Name"></label>
+                                <input class="mb-0 form-control" asp-for="Name" placeholder="Enter your Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12 col-12 mb--15">
+                                <label asp-for="SurName"></label>
+                                <input class="mb-0 form-control" asp-for="SurName" placeholder="Enter your SurName">
+                                <span asp-validation-for="SurName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12 col-12 mb--15">
+                                <label asp-for="UserName"></label>
+                                <input class="mb-0 form-control" asp-for="UserName" placeholder="Enter your UserName">
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12 col-12 mb--15">
+                                <label asp-for="Email"></label>
+                                <input class="mb-0 form-control" asp-for="Email" placeholder="Enter your Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12 col-12 mb--15">
+                                <label asp-for="PassWord"></label>
+                                <input class="mb-0 form-control" asp-for="PassWord" placeholder="Enter your PassWord">
+                                <span asp-validation-for="PassWord" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12 col-12 mb--15">
+                                <label asp-for="ConfirmPassword"></label>
+                                <input class="mb-0 form-control" asp-for="ConfirmPassword" placeholder="Enter your ConfirmPassword">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</main>
+@section Script{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}
