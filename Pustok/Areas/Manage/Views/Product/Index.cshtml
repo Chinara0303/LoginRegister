@@ -48,41 +48,53 @@
 
                 @if (ViewBag.CurentPage > 1)
                 {
-                    <li class="page-item">
-                        <a class="page-link" asp-action="Index" asp-route-page="1" aria-label="Previous">
-                            <span aria-hidden="true">@("<<")</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage - 1)" aria-label="Previous">
-                            <span aria-hidden="true">@("<")</span>
-                        </a>
-                    </li>
-                }
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-page="1" aria-label="Previous">
+                    <span aria-hidden="true">@("<<")</span>
+                </a>
+            </li>
+                            <li class="page-item">
+                                <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage - 1)" aria-label="Previous">
+                                    <span aria-hidden="true">@("<")</span>
+                                </a>
+                            </li>
+}
 
                 @if (ViewBag.CurentPage > 1)
                 {
-                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage-1)">@(ViewBag.CurentPage-1)</a></li>
-                }
-                <li class="page-item active"><a class="page-link "  asp-action="Index" asp-route-page="@ViewBag.CurentPage">@ViewBag.CurentPage</a></li>
-                @if (ViewBag.CurentPage < ViewBag.PageCount)
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage-1)">@(ViewBag.CurentPage-1)</a></li>
+}
+                <li class="page-item active"><a class="page-link " asp-action="Index" asp-route-page="@ViewBag.CurentPage">@ViewBag.CurentPage</a></li>
+                @if (ViewBag.CurentPage == ViewBag.PageCount)
                 {
-                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage+1)">@(ViewBag.CurentPage+1)</a></li>
-                }
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage-2)">@(ViewBag.CurentPage-2)</a></li>
+}
+                @if (ViewBag.CurentPage > 1)
+                {
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage-1)">@(ViewBag.CurentPage-1)</a></li>
+}
 
-                @if (ViewBag.PageCount > ViewBag.CurentPage)
+                <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage)">@(ViewBag.CurentPage)</a></li>
+
+                @if (ViewBag.PageCount < ViewBag.CurentPage)
                 {
+            <li class="page-item active"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage + 1)">@(ViewBag.CurentPage + 1)"></a></li>
+                    @if (ViewBag.CurentPage == 1)
+                     {
+                        <li class="page-item active"><a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage + 2)">@(ViewBag.CurentPage + 2)"></a></li>
+                     }
                     <li class="page-item">
-                        <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurentPage + 1)" aria-label="Previous">
-                            <span aria-hidden="true">></span>
+                        <a class="page-link" asp-action="Index" asp-route-page="@ViewBag.CurentPage+1" aria-label="Previous">
+                            <span aria-hidden="true">>></span>
                         </a>
                     </li>
+
                     <li class="page-item">
                         <a class="page-link" asp-action="Index" asp-route-page="@ViewBag.PageCount" aria-label="Previous">
                             <span aria-hidden="true">>></span>
                         </a>
                     </li>
-                }
+                 }
             </ul>
         </nav>
 

@@ -15,11 +15,13 @@ namespace Pustok.Controllers
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(AppDbContext context, UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AccountController(AppDbContext context, UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         public IActionResult Register()
         {
@@ -49,6 +51,7 @@ namespace Pustok.Controllers
                 }
                 return View();
             }
+            await _userManager.AddToRoleAsync(appUser, "Member");
             await _signInManager.SignInAsync(appUser, true);
 
             return RedirectToAction("Index", "Home");
@@ -65,20 +68,20 @@ namespace Pustok.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            AppUser appUser = await _userManager.FindByEmailAsync("Email");
+            AppUser appUser = await _userManager.FindByEmailAsync(loginVM.Email);
             if (appUser == null)
             {
                 ModelState.AddModelError("", "Email or Password is incorrect");
                 return View();
             }
 
-            Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(appUser.UserName, loginVM.PassWord, true, true);
-           
+            Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(appUser.UserName, loginVM.PassWord, true, false);
             if (!signInResult.Succeeded)
             {
                 ModelState.AddModelError("", "Email or Password is incorrect");
                 return View();
             }
+        
             return RedirectToAction("index", "home");
         }
 
@@ -86,6 +89,14 @@ namespace Pustok.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
+        }
+
+        public async Task<IActionResult> CreateRole()
+        {
+            await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
+            await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            await _roleManager.CreateAsync(new IdentityRole("Member"));
+            return Ok();
         }
     }
 }
